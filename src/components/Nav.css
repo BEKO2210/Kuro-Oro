@@ -88,15 +88,13 @@
 }
 
 @media (max-width: 880px) {
+  /* Desktop links + CTA give way to the mobile menu (which carries the CTA). */
   .nav-links {
     display: none;
   }
   .nav-wordmark {
     display: none;
   }
-}
-
-@media (max-width: 560px) {
   .nav-cta {
     display: none;
   }

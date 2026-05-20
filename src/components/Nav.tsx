@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { easeLux } from '../lib/motion'
+import MobileMenu from './MobileMenu'
 import './Nav.css'
 
 const links = [
@@ -9,6 +11,8 @@ const links = [
 ]
 
 export default function Nav() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
   return (
     <motion.header
       className="nav"
@@ -35,6 +39,13 @@ export default function Nav() {
         <a href="#shop" className="btn btn--ghost nav-cta">
           Jetzt im Shop kaufen
         </a>
+
+        <MobileMenu
+          links={links}
+          open={menuOpen}
+          onOpen={() => setMenuOpen(true)}
+          onClose={() => setMenuOpen(false)}
+        />
       </div>
     </motion.header>
   )

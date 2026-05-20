@@ -24,6 +24,7 @@ The page is composed in `src/App.tsx` from section components in `src/components
 - **Animation**: Framer Motion. Shared variants live in `src/lib/motion.ts` (`fadeUp`, `stagger`, `staggerItem`, `easeLux`, `reducedReveal`). Scroll-in reveals use the `Reveal` wrapper (`src/components/Reveal.tsx`); section headers use `SectionHeading.tsx`. **Always respect reduced motion** — call `useReducedMotion()` and fall back to `reducedReveal`/disabled hovers, as existing components do.
 - **Placeholders**: product/material images are intentionally CSS-only placeholders (gold corner brackets + "… folgt" labels). Real photography drops into `ProductCard` / `Craftsmanship` later.
 - **Quick-view**: `CollectionPreview` owns `activeProduct` state; each `ProductCard` is a keyboard-accessible `role="button"` that opens `ProductQuickView` (a right-side drawer with `AnimatePresence`, focus trap, Escape/backdrop close, reduced-motion fallback). No routing — it's pure local state.
+- **Mobile nav**: below 880px the desktop links + CTA hide and `MobileMenu` (rendered inside `Nav`) shows a fixed hamburger that morphs to an X and opens a full-screen overlay (same overlay pattern as the quick-view: `AnimatePresence`, focus trap, Escape/backdrop close, body-scroll lock, staggered links, reduced-motion fallback). Desktop nav is unchanged.
 
 ## Architecture & conventions
 

@@ -1,0 +1,36 @@
+.sh {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.sh-top {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.sh--center {
+  align-items: center;
+  text-align: center;
+}
+
+.sh--center .sh-top {
+  justify-content: center;
+}
+
+.sh--center .sh-lead {
+  margin-inline: auto;
+}
+
+.sh-title {
+  max-width: 18ch;
+}
+
+.sh--center .sh-title {
+  max-width: 24ch;
+}
+
+.sh-lead {
+  margin-top: 0.4rem;
+}

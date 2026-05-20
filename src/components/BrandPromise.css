@@ -1,0 +1,26 @@
+.promise {
+  border-block: 1px solid var(--line);
+  background: var(--ink);
+}
+
+.promise-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.8rem;
+}
+
+.promise-statement {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.9rem, 4.2vw, 3.4rem);
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  max-width: 20ch;
+  color: var(--bone);
+}
+
+.promise-sub {
+  max-width: 58ch;
+}

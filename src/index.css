@@ -1,0 +1,314 @@
+/* ============================================================
+   Kuro & Oro — Global theme
+   Aesthetic: Obsidian & Gold, luxury-editorial
+   ============================================================ */
+
+:root {
+  /* Surfaces */
+  --obsidian: #0a0a0b;
+  --ink: #0f0f11;
+  --charcoal: #141417;
+  --charcoal-2: #1b1b1f;
+  --line: rgba(201, 162, 90, 0.16);
+  --line-strong: rgba(201, 162, 90, 0.4);
+
+  /* Gold story */
+  --gold: #c9a25a;
+  --gold-bright: #e7c98a;
+  --gold-deep: #9a7a3f;
+  --gold-wash: rgba(201, 162, 90, 0.08);
+
+  /* Neutrals / text */
+  --bone: #f3efe6;
+  --text: #e8e4da;
+  --text-muted: #aaa49a;
+  --text-faint: #847e73;
+
+  /* Type */
+  --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-body: "Jost", "Helvetica Neue", Arial, sans-serif;
+
+  /* Rhythm */
+  --section-pad: clamp(5rem, 11vw, 11rem);
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --maxw: 1240px;
+
+  /* Motion */
+  --ease-lux: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--obsidian);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.65;
+  overflow-x: hidden;
+  /* Subtle warm gold light bleeding from the top.
+     Note: NOT background-attachment:fixed — fixed layers get repainted on
+     every page when exporting/printing to PDF, which looks like the page
+     content repeats. See the @media print block below. */
+  background-image: radial-gradient(
+    120% 80% at 50% -10%,
+    rgba(201, 162, 90, 0.1) 0%,
+    rgba(201, 162, 90, 0) 55%
+  );
+}
+
+/* Film-grain texture overlay for premium depth */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--obsidian);
+}
+
+:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 4px;
+}
+
+/* ---------- Layout primitives ---------- */
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section-pad);
+  position: relative;
+}
+
+.rule {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--line-strong) 50%,
+    transparent
+  );
+}
+
+/* ---------- Eyebrow label ---------- */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.76rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 2rem;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.7;
+}
+
+.eyebrow--center::after {
+  content: "";
+  width: 2rem;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.7;
+}
+
+/* Oversized editorial section numeral */
+.section-index {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line-strong);
+  line-height: 1;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  --btn-fg: var(--obsidian);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1rem 1.9rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  border: 1px solid var(--gold);
+  background: var(--gold);
+  color: var(--btn-fg);
+  transition:
+    background 0.5s var(--ease-lux),
+    color 0.5s var(--ease-lux),
+    transform 0.5s var(--ease-lux),
+    box-shadow 0.5s var(--ease-lux);
+}
+
+.btn:hover {
+  background: var(--gold-bright);
+  border-color: var(--gold-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px -22px rgba(201, 162, 90, 0.7);
+}
+
+.btn .btn-arrow {
+  transition: transform 0.5s var(--ease-lux);
+}
+
+.btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--gold);
+}
+
+.btn--ghost:hover {
+  background: var(--gold-wash);
+  color: var(--gold-bright);
+  box-shadow: none;
+}
+
+/* ---------- Shared headings ---------- */
+
+.heading-xl {
+  font-size: clamp(2.6rem, 6.5vw, 5.2rem);
+}
+
+.heading-lg {
+  font-size: clamp(2.2rem, 5vw, 3.9rem);
+}
+
+.lead {
+  color: var(--text-muted);
+  font-size: clamp(1.02rem, 1.5vw, 1.2rem);
+  font-weight: 300;
+  max-width: 46ch;
+}
+
+.gold-italic {
+  font-style: italic;
+  color: var(--gold);
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---------- Print / PDF export ----------
+   Viewport-fixed layers (the grain overlay, the body glow and the fixed nav)
+   are repainted on every paginated page, which makes the footer/CTA look
+   duplicated in a PDF export. Neutralise them and preserve the dark theme. */
+@media print {
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Drop the fixed grain overlay — this is the layer that repeats per page. */
+  body::after {
+    display: none;
+  }
+
+  body {
+    background-image: none;
+    background-color: var(--obsidian);
+  }
+
+  /* Un-fix the nav so it prints once, in flow. */
+  .nav {
+    position: static;
+    background: none;
+    backdrop-filter: none;
+  }
+
+  /* The hero no longer needs a full-viewport height on paper. */
+  .hero {
+    min-height: auto;
+  }
+
+  /* Keep the closing blocks intact instead of splitting across pages. */
+  .cta,
+  .footer,
+  .card {
+    break-inside: avoid;
+  }
+}
